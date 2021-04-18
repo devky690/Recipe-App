@@ -22,7 +22,7 @@ router.get("/:id", getUser, (req, res) => {
   res.json(res.user);
 });
 
-//Creates a User
+//Creates a User, Registers user
 router.post("/", async (req, res) => {
   //controller connects to model
   const user = new User({
@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
-    console.log(passwordHash);
+    //console.log(passwordHash);
     //save a new user account to the db
     const newUser = new User({
       username,
@@ -74,13 +74,33 @@ router.post("/", async (req, res) => {
     //save document to database
     const savedUser = await newUser.save();
 
-    //log the user in
+    ///sign the token
+
+    const token = jwt.sign(
+      //payload, mongo id in mongodb is considers id as _id from objectid
+      {
+        user: savedUser._id,
+      },
+      //for signing (encrypting)...used to verify payload as well login as well
+      //nothing stored in db, server just uses it
+      process.env.JWT_SECRET
+    );
+    console.log(token);
+
+    //name of cookie is token, jwt is token stored in cookie.
+    //using cookie so user can stay logged in
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .send();
 
     //this part not needed
     return res.status(201).json(newUser);
   } catch (err) {
+    //dev error
     console.log(err);
-    return res.status(400).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
