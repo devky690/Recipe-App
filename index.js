@@ -4,16 +4,13 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 //for file paths
 const path = require("path");
-require("dotenv");
+//for envs
+const dotenv = require("dotenv").config();
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-    "mongodb+srv://kyle123:kevinkyle2@cluster0.wa9rw.mongodb.net/user_database?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CONNECT, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 

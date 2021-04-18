@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -11,5 +11,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-//schema provides a way to "talk" to model in our database
+//mongoose schema (validates, formats documents) connects to mongoose model (connects
+//to documents) which connects
+//to collection in db, to reference documents in collection
+
+//User schema relates to users collection in db,
+//name User = users, requirement
 module.exports = mongoose.model("User", userSchema);
