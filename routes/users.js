@@ -23,7 +23,7 @@ router.get("/:id", getUser, (req, res) => {
 });
 
 //Creates a User, Registers user
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   //controller connects to model
   const user = new User({
     name: req.body.name,
@@ -94,9 +94,9 @@ router.post("/", async (req, res) => {
         httpOnly: true,
       })
       .send();
-
-    //this part not needed
-    return res.status(201).json(newUser);
+    //.redirect("/");
+    //this path's actions end from above, promise is returned...
+    //so how should i handle redirect?
   } catch (err) {
     //dev error
     console.log(err);
@@ -121,5 +121,69 @@ async function getUser(req, res, next) {
 
   next();
 }
+
+router.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    //validation
+    if (!username || !password) {
+      return res
+        .status(400)
+        .json({ errorMessage: "Please enter all required fields." });
+    }
+    const existingUser = await User.findOne({ username });
+    //unauthorized request, with password and email you dont want
+    //to be precise...dont want hacker to brute force
+    if (!existingUser)
+      return res.status(401).json({ errorMessage: "Wrong email or password" });
+
+    //returns true if password from req.body is the same
+    //as password from mongodb from existing user
+    const passwordCorrect = await bcrypt.compare(
+      password,
+      existingUser.passwordHash
+    );
+
+    if (!passwordCorrect)
+      return res.status(401).json({ errorMessage: "Wrong email or password" });
+    //sign (encrypt id of existing user) with secret key
+    const token = jwt.sign(
+      {
+        user: existingUser._id,
+      },
+      process.env.JWT_SECRET
+    );
+    // send cookie token to maintain session with jwt
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .send();
+  } catch (err) {
+    //dev error
+    console.log(err);
+  }
+});
+
+//test with no body for logout
+
+//no need for async because no database operation
+//to logout simply clear the cookie or clear local storage
+//this may work in browser, but not in postman...test later..if it doesnt work
+//then just set cookies through javascript and not http only
+router.get("/logout", (req, res) => {
+  //setting expire to 0 from data makes cookie expire
+  //second parameter - clear value with empty strings
+  //we need name of cookie which should still be token
+  // (first parameter)
+  res
+    .cookie("token", "", {
+      httpOnly: true,
+      //some past date
+      expires: new Data(0),
+    })
+    .send();
+});
 
 module.exports = router;
