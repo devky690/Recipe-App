@@ -5,6 +5,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+  ],
   passwordHash: {
     type: String,
     required: true,

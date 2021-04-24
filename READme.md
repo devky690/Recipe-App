@@ -1,6 +1,6 @@
 # Setup
 
-npm i bcrypt express nodemon dotenv jsonwebtoken
+npm i bcrypt express nodemon dotenv jsonwebtoken cookie-parser
 
 grab jwt secret from https://passwordsgenerator.net/
 
@@ -17,7 +17,7 @@ https://stackoverflow.com/questions/59703739/bcrypt-authentication-and-jwt-autho
 
 # Why HTTP cookies
 
-send the token in a http-only cookie
+send the json web token in a http-only cookie
 regular cookies and localstorage can be read by
 javascript which hackers can access via cross-side scripting
 (utilizing javascript to gain access to private user information)
@@ -25,7 +25,7 @@ javascript which hackers can access via cross-side scripting
 # Registration
 
 We store hash in db, but chose to encrypt user object id
-in mongo (_id) with jwt to authenticate users, cookie used to store token so that user can continue to make valid request to server
+in mongo (\_id) with jwt to authenticate users, cookie used to store token so that user can continue to make valid request to server
 
 # Why Hashing
 

@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 //for file paths
 const path = require("path");
 //for envs
 const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser");
 
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CONNECT, {
   useNewUrlParser: true,
@@ -14,12 +15,17 @@ mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CONNECT, {
 
 const db = mongoose.connection;
 
+//if json in request parse it
 app.use(express.json());
+//if cookie in request, parse it
+app.use(cookieParser());
 
 const userRouter = require("./routes/users");
+const categoryRouter = require("./routes/category");
 
-//connecting router to users path
+//connecting router to users, category path in browser
 app.use("/users", userRouter);
+app.use("/category", categoryRouter);
 
 //if we have port defined or if we dont then run locally at
 //port 8080
