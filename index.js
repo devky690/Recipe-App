@@ -23,7 +23,7 @@ app.use(cookieParser());
 const userRouter = require("./routes/users");
 const categoryRouter = require("./routes/category");
 
-//connecting router to users, category path in browser
+//connecting router to users, category, in browser
 app.use("/users", userRouter);
 app.use("/category", categoryRouter);
 

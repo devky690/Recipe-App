@@ -34,3 +34,8 @@ Hashing with bcrypt is useful to track login attempts, and login user
 decrypted.
 Hashing for storing passwords (bcrypt)
 Encrypt for session storage (jwt, cookies)
+
+# For the Future
+
+Currently for security i only have route guards through the auth middleware.
+In the future i would love to include user permission roles like admin, chefs, etc.
