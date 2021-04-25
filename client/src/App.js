@@ -18,38 +18,36 @@ axios.defaults.withCredentials = true;
 const App = () => {
   //useContext replaces consumer to access props/values
   //from the provider
-  //const { loggedIn } = useContext(AuthContext);
-  const loggedIn = true;
+  const { loggedIn } = useContext(AuthContext);
+
   return (
-    <AuthContextProvider>
-      <Router>
-        <Navbar> </Navbar>
-        <div className="background">
-          <div className="App" id="root">
-            <Route path="/search" exact component={Search} />
-            <Route path="/" exact component={Home} />
-            <Route path="/about" exact component={About} />
-            {loggedIn === false && (
-              <>
-                <Route path="/login" exact component={Login} />
-                <Route path="/register" exact component={Register} />
-              </>
-            )}
-            {loggedIn === true && (
-              <Route path="/category" exact component={Category} />
-            )}
-            {/* need exact here to seperate rendering
+    <Router>
+      <Navbar> </Navbar>
+      <div className="background">
+        <div className="App" id="root">
+          <Route path="/search" exact component={Search} />
+          <Route path="/" exact component={Home} />
+          <Route path="/about" exact component={About} />
+          {loggedIn === false && (
+            <>
+              <Route path="/login" exact component={Login} />
+              <Route path="/register" exact component={Register} />
+            </>
+          )}
+          {loggedIn === true && (
+            <Route path="/category" exact component={Category} />
+          )}
+          {/* need exact here to seperate rendering
       from root path and subpath, / is the root path,
       /about is the subpath, to exclude / from /about
       use exact! render home component when path is exactly
     equal to / */}
-            {/* you dont need switch but if you use switch,
+          {/* you dont need switch but if you use switch,
       root directories should come last, subpaths
     first! or use exact property again */}
-          </div>
         </div>
-      </Router>
-    </AuthContextProvider>
+      </div>
+    </Router>
   );
 };
 
