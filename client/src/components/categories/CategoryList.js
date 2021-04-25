@@ -1,13 +1,17 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import CategoryRecipe from "./CategoryRecipe";
+import CategoryContext from "../context/CategoryContext";
 
 //categories array from data contains a property categories which is some of
 // our documents (belongs to specific user) in our collection
 //from mongo
 const CategoryList = ({ categories }) => {
+  const { active, setActive } = useContext(CategoryContext);
+  //to obtain selected category to view
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const [active, setActive] = useState("start");
+  //for conditional rendering
+
   async function getCategory(categoryId) {
     try {
       const updatedSelect = await axios.get(

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import CategoryForm from "./CategoryForm";
 import CategoryList from "./CategoryList";
+import CategoryContext from "../context/CategoryContext";
+import CategoryRecipe from "./CategoryRecipe";
+
 const Category = () => {
+  const { active, setActive, setlocalActive } = useContext(CategoryContext);
   const [categories, setCategories] = useState([]);
 
   async function getCategories() {
@@ -18,8 +22,13 @@ const Category = () => {
 
   return (
     <div>
-      <CategoryForm getCategories={getCategories} />
-      <CategoryList categories={categories} />
+      {active === "start" && (
+        <>
+          <CategoryForm getCategories={getCategories} />
+          <CategoryList categories={categories} />
+        </>
+      )}
+      {active === "other" && <CategoryRecipe />}
     </div>
   );
 };
