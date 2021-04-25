@@ -3,10 +3,23 @@ import axios from "axios";
 import CategoryForm from "./CategoryForm";
 import CategoryList from "./CategoryList";
 const Category = () => {
+  const [categories, setCategories] = useState([]);
+
+  async function getCategories() {
+    const categoriesRes = await axios.get("http://localhost:8080/category");
+    //.data property is an object that contains the actual json array of objects
+    setCategories(categoriesRes.data);
+  }
+
+  useEffect(() => {
+    getCategories();
+    //when component loads...get categories
+  }, []);
+
   return (
     <div>
-      <CategoryForm />
-      <CategoryList />
+      <CategoryForm getCategories={getCategories} />
+      <CategoryList categories={categories} />
     </div>
   );
 };

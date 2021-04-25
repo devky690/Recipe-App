@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CategoryForm = () => {
+const CategoryForm = ({ getCategories }) => {
   const [categoryName, setCategoryName] = useState("");
 
   async function saveCategory(e) {
@@ -13,7 +13,10 @@ const CategoryForm = () => {
         user_id,
       };
       await axios.post("http://localhost:8080/category", categoryData);
-      console.log("success");
+      //this will cause this component to load thus the useEffect from category component will
+      //run since this component is inside the category component...so we dont need
+      //to refresh to see updated categories
+      getCategories();
     } catch (err) {
       console.error(err);
     }
