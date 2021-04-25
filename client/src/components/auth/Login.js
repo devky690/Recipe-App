@@ -28,8 +28,8 @@ const Login = () => {
       await axios.post("http://localhost:8080/users/login", loginData, {
         withCredentials: true,
       });
-      getLoggedIn();
-      window.location.reload();
+      await getLoggedIn();
+      history.push("/");
       //figure out how to redirect here
     } catch (err) {
       console.error(err);

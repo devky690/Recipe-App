@@ -26,7 +26,8 @@ const Register = () => {
       await axios.post("http://localhost:8080/users/register", registerData, {
         withCredentials: true,
       });
-      getLoggedIn();
+      await getLoggedIn();
+      history.push("/");
     } catch (err) {
       console.error(err);
     }
