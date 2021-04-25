@@ -12,6 +12,20 @@ const CategoryList = ({ categories }) => {
   const [selectedCategory, setSelectedCategory] = useState([]);
   //for conditional rendering
 
+  //need to add use effect
+
+//   useEffect(() => {
+//     //when query.length > 0 so we dont delete local storage
+//     //when query is empty
+//     if (query.length > 0) {
+//       getRecipes();
+//     }
+
+//     //shouldnt pass in search because for each letter, we will hit our
+//     //api limit for request allowed a minute if recipe is long
+//     //instead do on click
+//   }, [query]);
+
   async function getCategory(categoryId) {
     try {
       const updatedSelect = await axios.get(
@@ -25,6 +39,7 @@ const CategoryList = ({ categories }) => {
   }
   function renderCategories() {
     //key is just unique key...i is index...it will be incremented
+    console.log(categories);
     return categories.map((category, i) => {
       return (
         <>
@@ -48,6 +63,7 @@ const CategoryList = ({ categories }) => {
       {" "}
       {active === "start" && <ul>{renderCategories()}</ul>}
       {active === "other" && (
+        //   need to map here as well
         <CategoryRecipe selectedCategory={selectedCategory}></CategoryRecipe>
       )}
     </div>

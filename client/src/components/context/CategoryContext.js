@@ -5,6 +5,8 @@ import React, { createContext, useState } from "react";
 //create consumer
 const CategoryContext = createContext();
 
+//useContext will let us use our consumer and access props from the provider
+
 const CategoryContextProvider = (props) => {
   const [active, setActive] = useState("start");
 

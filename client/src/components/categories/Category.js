@@ -28,6 +28,7 @@ const Category = () => {
           <CategoryList categories={categories} />
         </>
       )}
+      {/* need to use .map to display recipe */}
       {active === "other" && <CategoryRecipe />}
     </div>
   );

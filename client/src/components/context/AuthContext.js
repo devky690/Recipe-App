@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 
+//create consumer
 const AuthContext = createContext();
+
+//useContext will let us use our consumer and access props from the provider
 
 const AuthContextProvider = (props) => {
   //default is undefined...dont need to type
