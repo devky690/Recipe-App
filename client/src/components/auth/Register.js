@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Register = () => {
@@ -9,7 +10,8 @@ const Register = () => {
   const [passwordVerify, setPassVer] = useState("");
 
   const { getLoggedIn } = useContext(AuthContext);
-
+  //use history hook
+  const history = useHistory();
   async function register(e) {
     //dont want the page to be reloaded
     e.preventDefault();
