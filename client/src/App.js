@@ -6,7 +6,7 @@ import Home from "./components/layout/Home";
 import About from "./components/layout/About";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Category from "./components/layout/Category";
+import Category from "./components/categories/Category";
 import axios from "axios";
 //Browser router being renamed to just Router
 import { Route, BrowserRouter as Router } from "react-router-dom";

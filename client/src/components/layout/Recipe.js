@@ -1,10 +1,21 @@
 import React from "react";
 import "../styles/Recipe.css";
 import Ingredients from "./Ingredients";
+import axios from "axios";
 
 //destructuring, props
 //without destructuring we would have props.title, etc.
 const Recipe = ({ title, calories, image, ingredients }) => {
+  // async function addRecipeToCategory(category) {
+  //   //object id from categories
+  //   //prop will become category_id for new recipe
+  //   const recipe = {
+  //     title,
+  //     category_id,
+  //   };
+  //   await axios.post("http://localhost:8080/category", recipe);
+  // }
+
   return (
     <div className="recipe-container">
       <div className="recipe-content">

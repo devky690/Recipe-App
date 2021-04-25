@@ -16,12 +16,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Gets a single User
-// router.get("/:id", getUser, (req, res) => {
-//   console.log(res.user);
-//   res.json(res.user);
-// });
-
 //Creates a User, Registers user
 router.post("/register", async (req, res) => {
   //controller connects to model

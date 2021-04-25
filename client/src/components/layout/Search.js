@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
 import "../styles/Search.css";
+import axios from "axios";
 
 //Flow:
 //1) getting recipe state
@@ -53,7 +54,6 @@ const Search = () => {
 
     if (recipeJSON != null) setRecipes(JSON.parse(recipeJSON));
   };
-
   //need e for whenever search button is clicked...
   //e represents the button, we dont want search button
   //to refresh, we arent saving to local storage
