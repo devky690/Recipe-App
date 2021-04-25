@@ -1,6 +1,6 @@
 # Setup
 
-npm i bcrypt express nodemon dotenv jsonwebtoken cookie-parser
+npm i bcrypt express nodemon dotenv jsonwebtoken cookie-parser cors
 
 grab jwt secret from https://passwordsgenerator.net/
 
@@ -21,6 +21,13 @@ send the json web token in a http-only cookie
 regular cookies and localstorage can be read by
 javascript which hackers can access via cross-side scripting
 (utilizing javascript to gain access to private user information)
+
+to see them in browser go to network then
+to XHR then page you created cookie on then
+look at header and you will see Set-Cookie...thats the http only cookie
+
+should see in localhost after
+front end and backend having credentials true
 
 # Registration
 

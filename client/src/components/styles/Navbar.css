@@ -33,19 +33,11 @@ nav {
   padding: 0 1.5em;
   flex-basis: 10%;
 }
-.home {
-  text-decoration: none;
-  color: black;
-}
-.about {
-  text-decoration: none;
-  color: black;
-}
-.search {
-  text-decoration: none;
-  color: black;
-}
-.login {
+.home,
+.about,
+.search,
+.login,
+.register {
   text-decoration: none;
   color: black;
 }

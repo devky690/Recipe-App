@@ -4,9 +4,14 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import Home from "./components/Home";
 import About from "./components/About";
-import Login from "./components/Login";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import axios from "axios";
 //Browser router being renamed to just Router
 import { Route, BrowserRouter as Router } from "react-router-dom";
+
+//so every component allows cookies to be set with axios
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
@@ -18,6 +23,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Login} />
+          <Route path="/register" exact component={Register} />
         </div>
         {/* need exact here to seperate rendering
       from root path and subpath, / is the root path,

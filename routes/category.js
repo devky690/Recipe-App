@@ -96,6 +96,8 @@ router.get("/:category_id", auth, async (req, res) => {
     res.json(category);
   } catch (err) {
     console.log(err);
+    //.send could be for simple message or no message
+    //.json is for a whole object
     res.status(500).send();
   }
 });
