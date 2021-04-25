@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import LogOutBtn from "../auth/LogOutBtn";
 
 const Navbar = () => {
   //useContext allows us to access values of props from the
@@ -49,11 +50,14 @@ const Navbar = () => {
         )}
         {/* if loggedIn is true then load this component */}
         {loggedIn === true && (
-          <li className="item">
-            <Link className="category" to="/category">
-              Category
-            </Link>
-          </li>
+          <>
+            <li className="item">
+              <Link className="category" to="/category">
+                Category
+              </Link>
+            </li>
+            <LogOutBtn />
+          </>
         )}
       </ul>
     </nav>

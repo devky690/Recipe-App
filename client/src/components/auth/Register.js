@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import AuthContext from "../context/AuthContext";
 
 const Register = () => {
   //default value...empty string, not empty array or anything
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVerify, setPassVer] = useState("");
+
+  const { getLoggedIn } = useContext(AuthContext);
 
   async function register(e) {
     //dont want the page to be reloaded
@@ -23,6 +26,7 @@ const Register = () => {
       await axios.post("http://localhost:8080/users/register", registerData, {
         withCredentials: true,
       });
+      getLoggedIn();
     } catch (err) {
       console.error(err);
     }

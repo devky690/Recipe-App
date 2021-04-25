@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Login = () => {
   //default value...empty string, not empty array or anything
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const { getLoggedIn } = useContext(AuthContext);
 
   //useHistory hook to redirect after loggin
   const history = useHistory();
@@ -25,7 +28,9 @@ const Login = () => {
       await axios.post("http://localhost:8080/users/login", loginData, {
         withCredentials: true,
       });
-      history.push("/");
+      getLoggedIn();
+      window.location.reload();
+      //figure out how to redirect here
     } catch (err) {
       console.error(err);
     }
