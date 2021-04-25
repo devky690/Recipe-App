@@ -170,5 +170,27 @@ router.get("/logout", (req, res) => {
     })
     .send();
 });
+//we need this endpoint because of using http-only cookie...
+//our front end code...cant read the cookie
+router.get("/loggedIn", (req, res) => {
+  try {
+    //req.body is like req.cookies...we added token property
+    const token = req.cookies.token;
+
+    //if you dont have token, false...your not logged in
+    if (!token) return res.json(false);
+
+    //unverfied token...we catch and send false
+    //...your not logged in
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    //client can access this res.send and sets
+    //as loggedIn state
+    //and retrieved through axios
+    res.send(true);
+  } catch (err) {
+    res.json(false);
+  }
+});
 
 module.exports = router;

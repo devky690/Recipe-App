@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
-import "./styles/Search.css";
+import "../styles/Search.css";
 
 //Flow:
 //1) getting recipe state

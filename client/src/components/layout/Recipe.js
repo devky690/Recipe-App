@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Recipe.css";
+import "../styles/Recipe.css";
 import Ingredients from "./Ingredients";
 
 //destructuring, props

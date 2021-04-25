@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   //default value...empty string, not empty array or anything
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  //useHistory hook to redirect after loggin
+  const history = useHistory();
 
   async function login(e) {
     //dont want the page to be reloaded
@@ -21,6 +25,7 @@ const Login = () => {
       await axios.post("http://localhost:8080/users/login", loginData, {
         withCredentials: true,
       });
+      history.push("/");
     } catch (err) {
       console.error(err);
     }
