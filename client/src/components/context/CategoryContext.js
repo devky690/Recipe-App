@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 
-//this context is for conditional rendering
+//this context is for conditional rendering...needed it for child to share state
+//with parent
 
 //create consumer
 const CategoryContext = createContext();

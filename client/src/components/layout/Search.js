@@ -27,7 +27,6 @@ const Search = () => {
     if (query.length > 0) {
       getRecipes();
     }
-
     //shouldnt pass in search because for each letter, we will hit our
     //api limit for request allowed a minute if recipe is long
     //instead do on click

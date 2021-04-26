@@ -14,3 +14,5 @@ Could have address loggedIn state through localStorage instead of using an endpo
 
 loggedIn was useful for global state because it helped
 with conditional rendering
+
+useState hook updates state on next rerender of component, not immediately...to resolve use arrow function inside of usestate hook

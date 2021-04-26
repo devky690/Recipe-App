@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CategoryRecipe from "./CategoryRecipe";
 import CategoryContext from "../context/CategoryContext";
 
@@ -7,36 +7,12 @@ import CategoryContext from "../context/CategoryContext";
 // our documents (belongs to specific user) in our collection
 //from mongo
 const CategoryList = ({ categories }) => {
+  //for conditional rendering
   const { active, setActive } = useContext(CategoryContext);
   //to obtain selected category to view
-  const [selectedCategory, setSelectedCategory] = useState([]);
-  //for conditional rendering
+  const [categId, setCategoryId] = useState("");
+  const [title, setTitle] = useState("");
 
-  //need to add use effect
-
-//   useEffect(() => {
-//     //when query.length > 0 so we dont delete local storage
-//     //when query is empty
-//     if (query.length > 0) {
-//       getRecipes();
-//     }
-
-//     //shouldnt pass in search because for each letter, we will hit our
-//     //api limit for request allowed a minute if recipe is long
-//     //instead do on click
-//   }, [query]);
-
-  async function getCategory(categoryId) {
-    try {
-      const updatedSelect = await axios.get(
-        `http://localhost:8080/category/?category_id=${categoryId}`
-      );
-      console.log(" hello " + updatedSelect);
-      setSelectedCategory(selectedCategory);
-    } catch (err) {
-      console.log(err + "this is the error");
-    }
-  }
   function renderCategories() {
     //key is just unique key...i is index...it will be incremented
     console.log(categories);
@@ -48,7 +24,8 @@ const CategoryList = ({ categories }) => {
           <button
             className="view-button"
             onClick={() => {
-              getCategory(category._id);
+              setCategoryId("hello");
+              setTitle("yo");
               setActive("other");
             }}
           >
@@ -60,11 +37,10 @@ const CategoryList = ({ categories }) => {
   }
   return (
     <div>
-      {" "}
       {active === "start" && <ul>{renderCategories()}</ul>}
       {active === "other" && (
         //   need to map here as well
-        <CategoryRecipe selectedCategory={selectedCategory}></CategoryRecipe>
+        <CategoryRecipe categId={categId} title={title}></CategoryRecipe>
       )}
     </div>
   );
