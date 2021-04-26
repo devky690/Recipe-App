@@ -15,4 +15,10 @@ Could have address loggedIn state through localStorage instead of using an endpo
 loggedIn was useful for global state because it helped
 with conditional rendering
 
-useState hook updates state on next rerender of component, not immediately...to resolve use arrow function inside of usestate hook
+useState hook updates state on next rerender of component, not immediately...to resolve use arrow function inside of set function to
+get previous state
+useState is asynchronous
+
+the reason why i needed category context was because i was rendering one of the
+same two components but i was passing state into one of the two components that
+wouldnt get rendered...i NEEDED context to resolve this
