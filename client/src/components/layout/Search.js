@@ -92,6 +92,7 @@ const Search = () => {
         //label = title
         <Recipe
           className="container"
+          thisRecipe={recipe}
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}
           image={recipe.recipe.image}

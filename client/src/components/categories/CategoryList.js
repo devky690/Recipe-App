@@ -8,9 +8,22 @@ import CategoryContext from "../context/CategoryContext";
 //from mongo
 const CategoryList = ({ categories }) => {
   //for conditional rendering
-  const { active, setActive, setTitle, setCategoryId } = useContext(
+  const { active, setActive, setTitle, setCategoryId, categId } = useContext(
     CategoryContext
   );
+  let selectedRecipe;
+  async function saveToCategory() {
+    if (localStorage.getItem("selectedRecipe") != null) {
+      selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
+    }
+    const cachedRecipeData = {
+      title: selectedRecipe.recipe.label,
+    };
+    await axios.post(
+      `http://localhost:8080/category/${categId}/recipe`,
+      cachedRecipeData
+    );
+  }
 
   function renderCategories() {
     //key is just unique key...i is index...it will be incremented
@@ -29,6 +42,14 @@ const CategoryList = ({ categories }) => {
             }}
           >
             View
+          </button>
+          <button
+            onClick={() => {
+              setCategoryId(category._id);
+              saveToCategory();
+            }}
+          >
+            Save Recipe
           </button>
         </>
       );

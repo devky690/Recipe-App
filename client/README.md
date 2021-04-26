@@ -22,3 +22,7 @@ useState is asynchronous
 the reason why i needed category context was because i was rendering one of the
 same two components but i was passing state into one of the two components that
 wouldnt get rendered...i NEEDED context to resolve this
+
+# Minor Fixes
+save active state to localstorage so on refresh user doesnt back
+out of category they are in
