@@ -18,6 +18,7 @@ const CategoryList = ({ categories }) => {
     }
     const cachedRecipeData = {
       title: selectedRecipe.recipe.label,
+      category_id: categId,
     };
     await axios.post(
       `http://localhost:8080/category/${categId}/recipe`,
