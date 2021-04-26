@@ -31,7 +31,7 @@ const CategoryList = ({ categories }) => {
     };
 
     await axios.post(
-      `http://localhost:8080/category/${categId}/recipe`,
+      `https://recipe-for-all.herokuapp.com/category/${categId}/recipe`,
       cachedRecipeData
     );
     console.log(cachedRecipeData);

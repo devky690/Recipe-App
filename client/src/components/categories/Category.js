@@ -10,7 +10,9 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
 
   async function getCategories() {
-    const categoriesRes = await axios.get("http://localhost:8080/category");
+    const categoriesRes = await axios.get(
+      "https://recipe-for-all.herokuapp.com/category"
+    );
     //.data property is an object that contains the actual json array of objects
     setCategories(categoriesRes.data);
   }

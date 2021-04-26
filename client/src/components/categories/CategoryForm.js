@@ -7,12 +7,17 @@ const CategoryForm = ({ getCategories }) => {
   async function saveCategory(e) {
     e.preventDefault();
     try {
-      const user_id = await axios.get("http://localhost:8080/token");
+      const user_id = await axios.get(
+        "https://recipe-for-all.herokuapp.com/token"
+      );
       const categoryData = {
         title: categoryName,
         user_id,
       };
-      await axios.post("http://localhost:8080/category", categoryData);
+      await axios.post(
+        "https://recipe-for-all.herokuapp.com/category",
+        categoryData
+      );
       //this will cause this component to load thus the useEffect from category component will
       //run since this component is inside the category component...so we dont need
       //to refresh to see updated categories

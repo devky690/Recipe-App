@@ -17,7 +17,7 @@ const CategoryRecipe = () => {
   }, []);
   async function getRecipesFromCateg() {
     const recipeReq = await axios.get(
-      `http://localhost:8080/category/${categId}/recipe`
+      `https://recipe-for-all.herokuapp.com/category/${categId}/recipe`
     );
     setRecipes(recipeReq.data);
     console.clear();
