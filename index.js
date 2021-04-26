@@ -26,7 +26,7 @@ app.use(cookieParser());
 //later also put production url
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://recipe-for-all.herokuapp.com"],
+    origin: ["https://recipe-for-all.herokuapp.com"],
     //to allow cookies and other credentials from this origin...should see
     //200 ok in network tab and also should see in localhost now from
     //front end and backend having credentials true
