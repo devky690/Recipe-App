@@ -36,11 +36,13 @@ const CategoryList = ({ categories }) => {
   }
   return (
     <div>
-      {active === "start" && <ul>{renderCategories()}</ul>}
-      {active === "other" && (
+      <ul>{renderCategories()}</ul>
+      {/* {active === "start" && <ul>{renderCategories()}</ul>} */}
+      {/* {active === "other" && (
         //   need to map here as well
         <CategoryRecipe></CategoryRecipe>
       )}
+    </div> */}
     </div>
   );
 };

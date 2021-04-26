@@ -8,10 +8,11 @@ const CategoryRecipe = () => {
   const { setActive, categId, title } = useContext(CategoryContext);
   let recipes;
 
-  useEffect(() => {
-    console.clear();
-    console.log("" + title);
-  }, []);
+  async function getRecipesFromCateg() {
+    recipes = await axios.get(
+      `http://localhost:8080/category/${categId}/recipe`
+    );
+  }
 
   return (
     <div>
