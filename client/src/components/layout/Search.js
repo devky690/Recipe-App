@@ -39,6 +39,7 @@ const Search = () => {
   const getRecipes = async () => {
     const res = await fetch(url);
     const data = await res.json();
+    //data is from axios...hits is from the actual external recipe api
     setRecipes(data.hits);
     //reload page so old recipes dont stay
     window.location.reload();

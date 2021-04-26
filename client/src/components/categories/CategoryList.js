@@ -12,14 +12,22 @@ const CategoryList = ({ categories }) => {
     CategoryContext
   );
   let selectedRecipe;
+  let selectedRecipeIng;
   async function saveToCategory() {
+    console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
       selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
+    }
+    if (localStorage.getItem("selectedRecipeIng") != null) {
+      selectedRecipeIng = JSON.parse(localStorage.getItem("selectedRecipeIng"));
+      console.log(localStorage.getItem("selectedRecipeIng"));
     }
     const cachedRecipeData = {
       title: selectedRecipe.recipe.label,
       category_id: categId,
+      ingredients: selectedRecipeIng,
     };
+
     await axios.post(
       `http://localhost:8080/category/${categId}/recipe`,
       cachedRecipeData

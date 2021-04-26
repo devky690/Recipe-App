@@ -8,24 +8,24 @@ import IndividualRecipe from "../categories/IndividualRecipe";
 const CategoryRecipe = () => {
   const { setActive, categId, title } = useContext(CategoryContext);
   const [recipes, setRecipes] = useState([]);
-  let recipeReq;
   useEffect(() => {
     getRecipesFromCateg();
+    //when component loads get recipes
   }, []);
   async function getRecipesFromCateg() {
-    recipeReq = await axios.get(
+    const recipeReq = await axios.get(
       `http://localhost:8080/category/${categId}/recipe`
     );
     setRecipes(recipeReq.data);
     console.clear();
     console.log(categId);
-    console.log(recipeReq.data);
+    console.log(recipeReq);
+    console.log(recipeReq.data.ingredients);
   }
 
   return (
     <div>
-      <h1>{title}</h1>
-      <h2>{categId}</h2>
+      <h1>{title.toUpperCase()}</h1>
       <button
         onClick={() => {
           setActive("start");
@@ -41,6 +41,8 @@ const CategoryRecipe = () => {
           className="container"
           title={recipe.title}
           id={recipe._id}
+          image={recipe.image}
+          ingredients={recipe.ingredientLines}
           key={i}
         ></IndividualRecipe>
       ))}
