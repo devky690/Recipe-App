@@ -4,9 +4,8 @@ import CategoryContext from "../context/CategoryContext";
 
 //selectedCategory destructured should have the _id that we need to get recipes
 //only request we need to make here is the request to /category/:categoryId/recipe
-const CategoryRecipe = (props) => {
-  const { categId, title } = props;
-  const { setActive } = useContext(CategoryContext);
+const CategoryRecipe = () => {
+  const { setActive, categId, title } = useContext(CategoryContext);
   let recipes;
 
   useEffect(() => {

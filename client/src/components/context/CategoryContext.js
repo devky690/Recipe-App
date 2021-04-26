@@ -10,14 +10,20 @@ const CategoryContext = createContext();
 
 const CategoryContextProvider = (props) => {
   const [active, setActive] = useState("start");
+  //to obtain category to view...need to do here because of conditional
+  //rendering
+  const [categId, setCategoryId] = useState("");
+  const [title, setTitle] = useState("");
 
-  function setlocalActive() {
-    localStorage.setItem("active", active);
-  }
+  // function setlocalActive() {
+  //   localStorage.setItem("active", active);
+  // }
 
   //we want to passIn the current state
   return (
-    <CategoryContext.Provider value={{ active, setActive, setlocalActive }}>
+    <CategoryContext.Provider
+      value={{ active, setActive, categId, setCategoryId, title, setTitle }}
+    >
       {props.children}
     </CategoryContext.Provider>
   );

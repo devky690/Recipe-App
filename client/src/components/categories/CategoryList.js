@@ -8,10 +8,9 @@ import CategoryContext from "../context/CategoryContext";
 //from mongo
 const CategoryList = ({ categories }) => {
   //for conditional rendering
-  const { active, setActive } = useContext(CategoryContext);
-  //to obtain selected category to view
-  const [categId, setCategoryId] = useState("");
-  const [title, setTitle] = useState("");
+  const { active, setActive, setTitle, setCategoryId } = useContext(
+    CategoryContext
+  );
 
   function renderCategories() {
     //key is just unique key...i is index...it will be incremented
@@ -24,8 +23,8 @@ const CategoryList = ({ categories }) => {
           <button
             className="view-button"
             onClick={() => {
-              setCategoryId("hello");
-              setTitle("yo");
+              setCategoryId(category._id);
+              setTitle(category.title);
               setActive("other");
             }}
           >
@@ -40,7 +39,7 @@ const CategoryList = ({ categories }) => {
       {active === "start" && <ul>{renderCategories()}</ul>}
       {active === "other" && (
         //   need to map here as well
-        <CategoryRecipe categId={categId} title={title}></CategoryRecipe>
+        <CategoryRecipe></CategoryRecipe>
       )}
     </div>
   );
