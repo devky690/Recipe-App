@@ -3,6 +3,8 @@ import axios from "axios";
 import CategoryContext from "../context/CategoryContext";
 import IndividualRecipe from "../categories/IndividualRecipe";
 
+//this is inside the category
+
 //selectedCategory destructured should have the _id that we need to get recipes
 //only request we need to make here is the request to /category/:categoryId/recipe
 const CategoryRecipe = () => {
@@ -11,6 +13,7 @@ const CategoryRecipe = () => {
   useEffect(() => {
     getRecipesFromCateg();
     //when component loads get recipes
+    console.log(recipes);
   }, []);
   async function getRecipesFromCateg() {
     const recipeReq = await axios.get(
@@ -42,7 +45,7 @@ const CategoryRecipe = () => {
           title={recipe.title}
           id={recipe._id}
           image={recipe.image}
-          ingredients={recipe.ingredientLines}
+          ingredients={recipe.ingredients}
           key={i}
         ></IndividualRecipe>
       ))}

@@ -3,6 +3,8 @@ import React, { useState, useContext, useEffect } from "react";
 import CategoryRecipe from "./CategoryRecipe";
 import CategoryContext from "../context/CategoryContext";
 
+//this is the listing of categories, outside the category
+
 //categories array from data contains a property categories which is some of
 // our documents (belongs to specific user) in our collection
 //from mongo
@@ -25,13 +27,14 @@ const CategoryList = ({ categories }) => {
     const cachedRecipeData = {
       title: selectedRecipe.recipe.label,
       category_id: categId,
-      ingredients: selectedRecipeIng,
+      ingredients: selectedRecipe.recipe.ingredientLines,
     };
 
     await axios.post(
       `http://localhost:8080/category/${categId}/recipe`,
       cachedRecipeData
     );
+    console.log(cachedRecipeData);
   }
 
   function renderCategories() {

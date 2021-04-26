@@ -1,6 +1,7 @@
 # Setup
 
 npm i bcrypt express nodemon dotenv jsonwebtoken cookie-parser cors
+npm i @hapi/joi
 
 grab jwt secret from https://passwordsgenerator.net/
 

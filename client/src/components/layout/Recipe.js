@@ -9,7 +9,6 @@ const Recipe = ({ title, calories, image, ingredients, thisRecipe }) => {
   function saveRecipeToLocal() {
     localStorage.setItem("selectedRecipe", JSON.stringify(thisRecipe));
     localStorage.setItem("selectedRecipeIng", JSON.stringify(ingredients));
-    console.log(ingredients);
   }
 
   return (

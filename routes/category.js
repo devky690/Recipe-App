@@ -3,7 +3,6 @@
 const router = require("express").Router();
 const Category = require("../models/Category");
 const Recipe = require("../models/Recipe");
-const mongoose = require("mongoose");
 const auth = require("../middleware/auth");
 
 router.post("/", auth, async (req, res) => {
@@ -28,7 +27,7 @@ router.post("/", auth, async (req, res) => {
 //add recipe to category
 router.post("/:category_id/recipe", auth, async (req, res) => {
   try {
-    const { title } = req.body;
+    const { title, ingredients } = req.body;
     const category = await Category.findById(req.params.category_id);
     const user_id = res.user;
 
@@ -43,6 +42,7 @@ router.post("/:category_id/recipe", auth, async (req, res) => {
     const newRecipe = new Recipe({
       title,
       category_id,
+      ingredients,
     });
 
     const savedRecipe = await newRecipe.save();
