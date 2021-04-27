@@ -13,9 +13,15 @@ const CategoryList = ({ categories }) => {
   const { active, setActive, setTitle, setCategoryId, categId } = useContext(
     CategoryContext
   );
-  let selectedRecipe;
-  let selectedRecipeIng;
+  //used for when we are saving recipes
+  const [postId, setPostId] = useState("");
 
+  useEffect(() => {
+    //we only call this function when postId changes and that will
+    //be noticed on next rerender and we rerender when postId changes
+    //so when we click on view we will see updated recipes for category
+    saveToCategory();
+  }, [postId]);
   async function saveToCategory() {
     console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
@@ -57,9 +63,8 @@ const CategoryList = ({ categories }) => {
             View
           </button>
           <button
-            onClick={async function () {
-              setCategoryId(category._id);
-              await saveToCategory();
+            onClick={() => {
+              setPostId(category._id);
             }}
           >
             Save Recipe
