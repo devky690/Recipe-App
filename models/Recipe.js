@@ -1,5 +1,4 @@
-//better to validate with Joi...much better
-//than mongoose validation
+
 const mongoose = require("mongoose");
 
 //need to add more properties to the model
