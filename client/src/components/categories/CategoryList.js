@@ -10,9 +10,7 @@ import CategoryContext from "../context/CategoryContext";
 //from mongo
 const CategoryList = ({ categories }) => {
   //for conditional rendering
-  const { active, setActive, setTitle, setCategoryId, categId } = useContext(
-    CategoryContext
-  );
+  const { setActive, setTitle, setCategoryId } = useContext(CategoryContext);
   let selectedRecipe;
   async function saveToCategory(id) {
     console.clear();
