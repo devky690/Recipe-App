@@ -58,8 +58,8 @@ const CategoryList = ({ categories }) => {
           </button>
           <button
             onClick={async function () {
-              await saveToCategory();
               setCategoryId(category._id);
+              await saveToCategory();
             }}
           >
             Save Recipe
