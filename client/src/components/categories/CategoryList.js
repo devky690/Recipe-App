@@ -30,7 +30,7 @@ const CategoryList = ({ categories }) => {
     };
 
     await axios.post(
-      `https://recipe-for-all.herokuapp.com/category/${categId}/recipe`,
+      `https://recipe-for-all.herokuapp.com/category/${id}/recipe`,
       cachedRecipeData
     );
     console.log(cachedRecipeData);
@@ -68,12 +68,6 @@ const CategoryList = ({ categories }) => {
   return (
     <div>
       <ul>{renderCategories()}</ul>
-      {/* {active === "start" && <ul>{renderCategories()}</ul>} */}
-      {/* {active === "other" && (
-        //   need to map here as well
-        <CategoryRecipe></CategoryRecipe>
-      )}
-    </div> */}
     </div>
   );
 };
