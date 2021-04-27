@@ -13,16 +13,8 @@ const CategoryList = ({ categories }) => {
   const { active, setActive, setTitle, setCategoryId, categId } = useContext(
     CategoryContext
   );
-  //used for when we are saving recipes
-  const [postId, setPostId] = useState("");
 
-  useEffect(() => {
-    //we only call this function when postId changes and that will
-    //be noticed on next rerender and we rerender when postId changes
-    //so when we click on view we will see updated recipes for category
-    saveToCategory();
-  }, [postId]);
-  async function saveToCategory() {
+  async function saveToCategory(id) {
     console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
       selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
@@ -33,7 +25,7 @@ const CategoryList = ({ categories }) => {
     // }
     const cachedRecipeData = {
       title: selectedRecipe.recipe.label,
-      category_id: categId,
+      category_id: id,
       ingredients: selectedRecipe.recipe.ingredientLines,
     };
 
@@ -63,8 +55,8 @@ const CategoryList = ({ categories }) => {
             View
           </button>
           <button
-            onClick={() => {
-              setPostId(category._id);
+            onClick={async function () {
+              saveToCategory(category._id);
             }}
           >
             Save Recipe
