@@ -13,7 +13,7 @@ const CategoryList = ({ categories }) => {
   const { active, setActive, setTitle, setCategoryId, categId } = useContext(
     CategoryContext
   );
-
+  let selectedRecipe;
   async function saveToCategory(id) {
     console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
@@ -55,7 +55,7 @@ const CategoryList = ({ categories }) => {
             View
           </button>
           <button
-            onClick={async function () {
+            onClick={() => {
               saveToCategory(category._id);
             }}
           >
