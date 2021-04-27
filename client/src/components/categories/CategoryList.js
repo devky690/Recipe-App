@@ -16,12 +16,6 @@ const CategoryList = ({ categories }) => {
   let selectedRecipe;
   let selectedRecipeIng;
 
-  //fixes issue where category wasnt rendering updated state after rerender...so button needed
-  //to be clicked twice
-  useEffect(() => {
-    saveToCategory();
-  }, [selectedRecipe]);
-
   async function saveToCategory() {
     console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
