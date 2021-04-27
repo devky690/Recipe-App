@@ -38,7 +38,7 @@ const CategoryList = ({ categories }) => {
     console.log(cachedRecipeData);
   }
 
-  function renderCategories() {
+  async function renderCategories() {
     //key is just unique key...i is index...it will be incremented
     console.log(categories);
     return categories.map((category, i) => {
@@ -58,8 +58,8 @@ const CategoryList = ({ categories }) => {
           </button>
           <button
             onClick={() => {
+              await saveToCategory();
               setCategoryId(category._id);
-              saveToCategory();
             }}
           >
             Save Recipe
