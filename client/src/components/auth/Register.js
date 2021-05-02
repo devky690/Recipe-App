@@ -41,28 +41,38 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register a new account</h1>
+      <h1 className="auth-title">Register a new account</h1>
       <form onSubmit={register}>
         <input
+          className="auth-input"
           type="name"
           placeholder="username"
           //e is event data....e.target.value is the updated value for the event data
           onChange={(e) => setName(e.target.value)}
           value={username}
         />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <input
-          type="password"
-          placeholder="retype password"
-          onChange={(e) => setPassVer(e.target.value)}
-          value={passwordVerify}
-        />
-        <button type="submit"> Register </button>
+        <div>
+          <input
+            className="auth-input"
+            type="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+        </div>
+        <div>
+          <input
+            className="auth-input"
+            type="password"
+            placeholder="retype password"
+            onChange={(e) => setPassVer(e.target.value)}
+            value={passwordVerify}
+          />
+        </div>
+        <button className="btn" type="submit">
+          {" "}
+          Register{" "}
+        </button>
       </form>
     </div>
   );

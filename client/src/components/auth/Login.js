@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import "../styles/Auth.css";
 
 const Login = () => {
   //default value...empty string, not empty array or anything
@@ -42,9 +43,10 @@ const Login = () => {
 
   return (
     <div>
-      <h1>login a new account</h1>
+      <h1 className="auth-title">login a new account</h1>
       <form onSubmit={login}>
         <input
+          className="auth-input"
           type="name"
           placeholder="username"
           //e is event data....e.target.value is the updated value for the event data
@@ -52,12 +54,16 @@ const Login = () => {
           value={username}
         />
         <input
+          className="auth-input"
           type="password"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <button type="submit"> Login </button>
+        <button className="btn" type="submit">
+          {" "}
+          Login{" "}
+        </button>
       </form>
     </div>
   );
