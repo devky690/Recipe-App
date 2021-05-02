@@ -10,7 +10,7 @@ const Navbar = () => {
   const { loggedIn } = useContext(AuthContext);
   return (
     <nav>
-      <span className="title">Favorite Home Recipes</span>
+      <span className="title">Recipe For All</span>
       <ul className="choices">
         <li className="item">
           {/* need to use Link instead of
@@ -20,11 +20,6 @@ const Navbar = () => {
                 changing the page */}
           <Link className="home" to="/">
             Home
-          </Link>
-        </li>
-        <li className="item">
-          <Link className="about" to="/about">
-            About
           </Link>
         </li>
         <li className="item">

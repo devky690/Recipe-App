@@ -27,7 +27,6 @@ const App = () => {
         <div className="App" id="root">
           <Route path="/search" exact component={Search} />
           <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
           {loggedIn === false && (
             <>
               <Route path="/login" exact component={Login} />

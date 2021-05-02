@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../styles/Category.css";
 
 const CategoryForm = ({ getCategories }) => {
   const [categoryName, setCategoryName] = useState("");
@@ -23,20 +24,21 @@ const CategoryForm = ({ getCategories }) => {
   }
 
   return (
-    <div>
-      <form onSubmit={saveCategory}>
-        <input
-          type="text"
-          placeholder="Category name"
-          onChange={(e) => {
-            setCategoryName(e.target.value);
-          }}
-          //   value changes in input field we change
-          value={categoryName}
-        />
-        <button type="submit">Save new category</button>
-      </form>
-    </div>
+    <form className="category-form" onSubmit={saveCategory}>
+      <input
+        className="category-input"
+        type="text"
+        placeholder="Category name"
+        onChange={(e) => {
+          setCategoryName(e.target.value);
+        }}
+        //   value changes in input field we change
+        value={categoryName}
+      />
+      <button className="btn btn-success" type="submit">
+        Save new category
+      </button>
+    </form>
   );
 };
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
 import CategoryRecipe from "./CategoryRecipe";
 import CategoryContext from "../context/CategoryContext";
+import "../styles/Category.css";
 
 //this is the listing of categories, outside the category
 
@@ -47,11 +48,13 @@ const CategoryList = ({ categories, setCategories, getCategories }) => {
     console.log(categories);
     return categories.map((category, i) => {
       return (
-        <>
-          <li key={i}>{category.title}</li>
+        <div className="category-list">
+          <li className="category-title" key={i}>
+            {category.title.toUpperCase()}
+          </li>
 
           <button
-            className="view-button"
+            className="btn"
             onClick={() => {
               setCategoryId(category._id);
               setTitle(category.title);
@@ -61,6 +64,7 @@ const CategoryList = ({ categories, setCategories, getCategories }) => {
             View
           </button>
           <button
+            className="btn btn-success"
             onClick={() => {
               saveToCategory(category._id);
             }}
@@ -68,13 +72,14 @@ const CategoryList = ({ categories, setCategories, getCategories }) => {
             Save Recipe
           </button>
           <button
+            className="btn btn-danger"
             onClick={() => {
               deleteCategory(category._id);
             }}
           >
             Delete Category
           </button>
-        </>
+        </div>
       );
     });
   }
