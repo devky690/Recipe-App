@@ -26,3 +26,5 @@ wouldnt get rendered...i NEEDED context to resolve this
 # Minor Fixes
 save active state to localstorage so on refresh user doesnt back
 out of category they are in
+
+On refresh on front end application with heroku i see my json data from the backend. Can only see my react routes when front end and backend share the same endpoints
