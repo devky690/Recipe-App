@@ -27,13 +27,13 @@ const CategoryList = ({ categories, setCategories, getCategories }) => {
     };
 
     await axios.post(
-      `http://localhost:8080/category/${id}/recipe`,
+      `https://recipe-for-all.herokuapp.com/category/${id}/recipe`,
       cachedRecipeData
     );
     console.log(cachedRecipeData);
   }
   async function deleteCategory(id) {
-    await axios.delete(`http://localhost:8080/category/${id}`);
+    await axios.delete(`https://recipe-for-all.herokuapp.com/category/${id}`);
     //so our state updates appropiately, setting this state will cause
     //a state change in other component category's useeffect
 

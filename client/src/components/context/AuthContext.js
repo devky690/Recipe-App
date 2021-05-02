@@ -11,7 +11,9 @@ const AuthContextProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   async function getLoggedIn() {
-    const loggedInRes = await axios.get("http://localhost:8080/users/loggedIn");
+    const loggedInRes = await axios.get(
+      "https://recipe-for-all.herokuapp.com/users/loggedIn"
+    );
     setLoggedIn(loggedInRes.data);
   }
   //only need to run the first time a component is created

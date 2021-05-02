@@ -11,7 +11,7 @@ const IndividualRecipe = (props) => {
     await axios.delete(
       //need to use actual id for recipes for delete to show right away
       //since state update happens on next rerender
-      `http://localhost:8080/category/${categId}/recipe/${id}`
+      `https://recipe-for-all.herokuapp.com/category/${categId}/recipe/${id}`
     );
     //so our state updates appropiately, setting this state will cause
     //a state change in other component category's useeffect
