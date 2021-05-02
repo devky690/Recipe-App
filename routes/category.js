@@ -114,5 +114,25 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send();
   }
 });
+router.delete("/:category_id", auth, async (req, res) => {
+  try {
+    const { category_id } = req.params;
+    await Category.findByIdAndDelete({ _id: category_id });
+    //so recipes are removed that no longer have a category
+    await Recipe.deleteMany({ category_id: category_id });
+    res.json({ message: "successfully deleted" });
+  } catch (err) {
+    res.status(404).send("Not found");
+  }
+});
+router.delete("/:category_id/recipe/:recipe_id", auth, async (req, res) => {
+  try {
+    const { recipe_id, category_id } = req.params;
+    await Recipe.findByIdAndDelete({ _id: recipe_id });
+    res.json({ message: "successfully deleted" });
+  } catch (err) {
+    res.status(404).send("Not Found");
+  }
+});
 
 module.exports = router;

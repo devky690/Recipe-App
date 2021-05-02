@@ -8,19 +8,17 @@ import CategoryContext from "../context/CategoryContext";
 //categories array from data contains a property categories which is some of
 // our documents (belongs to specific user) in our collection
 //from mongo
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, setCategories, getCategories }) => {
   //for conditional rendering
   const { setActive, setTitle, setCategoryId } = useContext(CategoryContext);
   let selectedRecipe;
+
   async function saveToCategory(id) {
     console.clear();
     if (localStorage.getItem("selectedRecipe") != null) {
       selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
     }
-    // if (localStorage.getItem("selectedRecipeIng") != null) {
-    //   selectedRecipeIng = JSON.parse(localStorage.getItem("selectedRecipeIng"));
-    //   console.log(localStorage.getItem("selectedRecipeIng"));
-    // }
+
     const cachedRecipeData = {
       title: selectedRecipe.recipe.label,
       category_id: id,
@@ -28,10 +26,20 @@ const CategoryList = ({ categories }) => {
     };
 
     await axios.post(
-      `https://recipe-for-all.herokuapp.com/category/${id}/recipe`,
+      `http://localhost:8080/category/${id}/recipe`,
       cachedRecipeData
     );
     console.log(cachedRecipeData);
+  }
+  async function deleteCategory(id) {
+    await axios.delete(`http://localhost:8080/category/${id}`);
+    //so our state updates appropiately, setting this state will cause
+    //a state change in other component category's useeffect
+
+    //the arrow function lets us avoid waiting until next rerender for
+    //state to change, since state is asynchronous we have to use past
+    //state to update without waiting for next rerender
+    setCategories(categories.filter((category) => category._id !== id));
   }
 
   function renderCategories() {
@@ -58,6 +66,13 @@ const CategoryList = ({ categories }) => {
             }}
           >
             Save Recipe
+          </button>
+          <button
+            onClick={() => {
+              deleteCategory(category._id);
+            }}
+          >
+            Delete Category
           </button>
         </>
       );

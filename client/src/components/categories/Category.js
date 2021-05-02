@@ -10,13 +10,14 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
 
   async function getCategories() {
-    const categoriesRes = await axios.get(
-      "https://recipe-for-all.herokuapp.com/category"
-    );
+    const categoriesRes = await axios.get("http://localhost:8080/category");
     //.data property is an object that contains the actual json array of objects
     setCategories(categoriesRes.data);
   }
 
+  // if we don't specify an empty array ([])
+  // as the second argument of the useEffect hook, the hook will exhibit the behaviour of an componentDidUpdate. It means every time some prop's value changes,
+  // the useEffect hook will be triggered.
   useEffect(() => {
     getCategories();
     //when component loads...get categories
@@ -27,7 +28,11 @@ const Category = () => {
       {active === "start" && (
         <>
           <CategoryForm getCategories={getCategories} />
-          <CategoryList categories={categories} />
+          <CategoryList
+            categories={categories}
+            setCategories={setCategories}
+            getCategories={getCategories}
+          />
         </>
       )}
       {/* need to use .map to display recipe */}
@@ -37,22 +42,3 @@ const Category = () => {
 };
 
 export default Category;
-// const [categories, setCategories] = useState([]);
-
-// useEffect(() => {
-//   getCategories();
-// }, [categories]);
-
-//adds category for a user
-// async function addCategory() {
-//   const user_id = await axios.get("http://localhost:8080/token");
-//   const category = {
-//     user_id,
-//     title,
-//   };
-//   await axios.post("http://localhost:8080/category", category);
-// }
-//gets all categories for dropdown box
-// async function getCategories() {
-//   const categories = await axios.get("http://localhost:8080/category");
-// }

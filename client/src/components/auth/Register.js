@@ -25,13 +25,9 @@ const Register = () => {
       //change to production url later, be careful with extra "/"
       //shouldve named auth instead of users but okay
       //withCredentials allows axios to change credentials
-      await axios.post(
-        "https://recipe-for-all.herokuapp.com/users/register",
-        registerData,
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.post("http://localhost:8080/users/register", registerData, {
+        withCredentials: true,
+      });
       await getLoggedIn();
       history.push("/");
     } catch (err) {

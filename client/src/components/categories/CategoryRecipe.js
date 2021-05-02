@@ -12,18 +12,14 @@ const CategoryRecipe = () => {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     getRecipesFromCateg();
-    //when component loads get recipes
+    //when component loads get recipes, run only once on any prop/state change
     console.log(recipes);
   }, []);
   async function getRecipesFromCateg() {
     const recipeReq = await axios.get(
-      `https://recipe-for-all.herokuapp.com/category/${categId}/recipe`
+      `http://localhost:8080/category/${categId}/recipe`
     );
     setRecipes(recipeReq.data);
-    console.clear();
-    console.log(categId);
-    console.log(recipeReq);
-    console.log(recipeReq.data.ingredients);
   }
 
   return (
@@ -47,7 +43,9 @@ const CategoryRecipe = () => {
           image={recipe.image}
           ingredients={recipe.ingredients}
           key={i}
-        ></IndividualRecipe>
+          setRecipes={setRecipes}
+          recipes={recipes}
+        />
       ))}
     </div>
   );
