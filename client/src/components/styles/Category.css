@@ -1,0 +1,53 @@
+.category-form {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+.category-input {
+  margin-top: 5px;
+  height: 30px;
+  outline: none;
+  border: 1px solid hsl(39, 100%, 50%);
+  border-radius: 5px;
+}
+
+.category-input:focus {
+  box-shadow: 0 0 2px 2px hsl(39, 100%, 30%);
+}
+
+.category-title {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  list-style: none;
+  letter-spacing: 2px;
+}
+
+.category-list {
+  padding: 10px;
+  background-color: hsl(86, 100%, 50%);
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 30px auto;
+  min-height: 10vh;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.btn {
+  padding: 0.5em;
+  background-color: hsl(209, 88%, 67%);
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  color: black;
+  margin: 5px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+}
+
+.btn-danger {
+  background-color: hsl(17, 100%, 50%);
+}
+.btn-success {
+  background-color: hsl(39, 100%, 50%);
+}
