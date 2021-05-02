@@ -4,6 +4,7 @@ import CategoryForm from "./CategoryForm";
 import CategoryList from "./CategoryList";
 import CategoryContext from "../context/CategoryContext";
 import CategoryRecipe from "./CategoryRecipe";
+import "../styles/Category.css";
 
 const Category = () => {
   const { active, setActive, setlocalActive } = useContext(CategoryContext);
@@ -27,6 +28,7 @@ const Category = () => {
     <div>
       {active === "start" && (
         <>
+          <h1 className="category-title">Your Categories </h1>
           <CategoryForm getCategories={getCategories} />
           <CategoryList
             categories={categories}

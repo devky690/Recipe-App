@@ -20,7 +20,7 @@ const Recipe = ({ title, calories, image, ingredients, thisRecipe }) => {
 
         <img src={image} alt="" />
         <button
-          className="recipe-button"
+          className="btn"
           onClick={() => {
             saveRecipeToLocal();
           }}

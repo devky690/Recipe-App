@@ -27,7 +27,9 @@ const IndividualRecipe = (props) => {
           <IndividIngred ingredients={ingredients}></IndividIngred>
         )}
         {!ingredients && <h2>no ingredients</h2>}
-        <button onClick={() => deleteRecipe()}>Delete Recipe</button>
+        <button className="btn btn-danger" onClick={() => deleteRecipe()}>
+          Delete Recipe
+        </button>
       </div>
     </div>
   );

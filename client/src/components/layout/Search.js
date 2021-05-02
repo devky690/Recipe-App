@@ -77,7 +77,8 @@ const Search = () => {
         {/* on change event needed or else default value "" from state
           will remain and we wouldnt be able to type*/}
         <input
-          className="Search Bar"
+          className
+          className="search-input"
           type="text"
           value={search}
           //so we can type

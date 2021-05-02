@@ -18,14 +18,14 @@
 .category-title {
   font-family: "Times New Roman", Times, serif;
   font-weight: 400;
-  color: #fff;
   list-style: none;
   letter-spacing: 2px;
 }
 
 .category-list {
   padding: 10px;
-  background-color: hsl(115, 100%, 50%);
+  background-color: hsl(86, 100%, 50%);
+  border: 1px solid black;
   border-radius: 5px;
   margin: 30px auto;
   min-height: 10vh;

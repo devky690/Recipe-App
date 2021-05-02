@@ -13,7 +13,11 @@ const LogOutBtn = () => {
     await getLoggedIn();
     history.push("/");
   }
-  return <button onClick={logOut}>LogOut</button>;
+  return (
+    <button className="btn" onClick={logOut}>
+      LogOut
+    </button>
+  );
 };
 
 export default LogOutBtn;

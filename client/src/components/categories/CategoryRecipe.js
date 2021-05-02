@@ -26,6 +26,7 @@ const CategoryRecipe = () => {
     <div>
       <h1>{title.toUpperCase()}</h1>
       <button
+        className="btn"
         onClick={() => {
           setActive("start");
         }}
