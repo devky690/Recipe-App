@@ -60,14 +60,5 @@ if (process.env.NODE_ENV === "production") {
 
 //to send html page from server to client in case of reload so client
 //can render properly
-if (
-  process.env.NODE_ENV === "production" &&
-  window.performance.getEntriesByType("navigation")[0].type == "reload"
-) {
-  app.use(express.static("client/build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 app.listen(port, () => console.log(`Server started at port: ${port}`));
