@@ -36,12 +36,11 @@ app.use(
 
 const userRouter = require("./routes/users");
 const categoryRouter = require("./routes/category");
-const tokenRouter = require("./routes/token");
+// const tokenRouter = require("./routes/token");
 
 //connecting router to users, category, in browser
 app.use("/users", userRouter);
 app.use("/category", categoryRouter);
-app.use("/token", tokenRouter);
 
 //if we have port defined or if we dont then run locally at
 //port 8080...CHANGE TO port 8080
