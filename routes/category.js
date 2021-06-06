@@ -4,6 +4,7 @@ const router = require("express").Router();
 const Category = require("../models/Category");
 const Recipe = require("../models/Recipe");
 const auth = require("../middleware/auth");
+const { update } = require("../models/Category");
 
 router.post("/", auth, async (req, res) => {
   try {
@@ -66,15 +67,36 @@ router.get("/:category_id/recipe", auth, async (req, res) => {
         .status(401)
         .json({ errorMessage: "this is not your category! unauthorized" });
     }
-    //url category id doesnt match category id for recipe...this would be for a single
-    //recipe
-    // if (recipe.category_id != req.params.category_id) {
-    //   res.status(404).json({
-    //     errMessage: "this recipe is not inside this category",
-    //   });
-    // }
     const recipes = await Recipe.find({ category_id: req.params.category_id });
     res.json(recipes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+});
+router.get("/:category_id/recipe/:recipe_id", auth, async (req, res) => {
+  try {
+    //find returns an array...so good for finding multiple documents
+    //but for one use findById or findOne or else would
+    //need to at index at 0 if using find
+    const category = await Category.findById(req.params.category_id);
+    const recipe = await Recipe.findById(req.params.recipe_id);
+    console.log(category);
+    const user_id = res.user;
+    if (category.user_id != user_id) {
+      console.log(category.user_id || "yo");
+      console.log(category);
+      console.log(user_id);
+      res
+        .status(401)
+        .json({ errorMessage: "this is not your category! unauthorized" });
+    }
+    if (recipe.category_id != req.params.category_id) {
+      res.status(404).json({
+        errorMessage: "this recipe is not inside this category",
+      });
+    }
+    res.json(recipe);
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -114,6 +136,47 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send();
   }
 });
+
+router.patch("/:category_id", auth, async (req, res) => {
+  const { title } = req.body;
+
+  try {
+    const category = await Category.findById(req.params.category_id);
+    if (title != null) {
+      category.title = title;
+    }
+    console.log(category);
+    //using save for FULL validation and middleware
+    const updatedCategory = await category.save();
+    res.json(updatedCategory);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ errorMessage: err.message });
+  }
+});
+
+router.patch("/:category_id/recipe/:recipe_id", auth, async (req, res) => {
+  const { title, ingredients } = req.body;
+  //category only holds recipe id and not the full recipe, so no need to update category
+  try {
+    const recipe = await Recipe.findById(req.params.recipe_id);
+    if (title != null) {
+      recipe.title = title;
+    }
+    if (ingredients != null) {
+      recipe.ingredients = ingredients;
+    }
+    console.log(recipe);
+    //using save for FULL validation and middleware
+    const updatedRecipe = await recipe.save();
+    //for client to access
+    res.json(updatedRecipe);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ errorMessage: err.message });
+  }
+});
+
 router.delete("/:category_id", auth, async (req, res) => {
   try {
     const { category_id } = req.params;
@@ -127,7 +190,7 @@ router.delete("/:category_id", auth, async (req, res) => {
 });
 router.delete("/:category_id/recipe/:recipe_id", auth, async (req, res) => {
   try {
-    const { recipe_id, category_id } = req.params;
+    const { recipe_id } = req.params;
     await Recipe.findByIdAndDelete({ _id: recipe_id });
     res.json({ message: "successfully deleted" });
   } catch (err) {

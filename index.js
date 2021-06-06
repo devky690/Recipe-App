@@ -44,8 +44,7 @@ app.use("/category", categoryRouter);
 app.use("/token", tokenRouter);
 
 //if we have port defined or if we dont then run locally at
-//port 8080
-
+//port 8080...CHANGE TO port 8080
 const port = process.env.PORT || 8080;
 
 //serve static assets (client code) if in production
@@ -57,5 +56,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+//to send html page from server to client in case of reload so client
+//can render properly
 
 app.listen(port, () => console.log(`Server started at port: ${port}`));
