@@ -42,12 +42,4 @@ nav {
   color: black;
 }
 
-@media screen and (max-width: 550px) {
-  .title {
-    margin-right: 15px;
-    justify-content: flex-end;
-  }
-  .choices .item {
-    display: none;
-  }
-}
+
