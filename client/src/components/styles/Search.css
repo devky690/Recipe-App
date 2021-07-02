@@ -36,11 +36,17 @@
   gap: 40px;
 }
 
-@media (max-width: 1050px) {
+@media screen and (max-width: 1050px) {
   .list {
     grid-template-columns: auto;
   }
   .container {
     grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .recipe-container {
+    width: 300px;
   }
 }

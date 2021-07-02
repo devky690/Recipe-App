@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 .home-title {
   font-family: "Times New Roman", Times, serif;
   font-weight: 400;
-  color: #fff;
+  color: hsl(209, 99%, 30%);
   list-style: none;
   letter-spacing: 2px;
 }
@@ -63,4 +64,20 @@
   color: black;
   font-size: large;
   padding: 20px;
+}
+
+@media screen and (max-width: 550px) {
+  .home {
+    width: 60vw;
+  }
+  .instr-list {
+    width: 60vw;
+    height: 90vh;
+    max-height: 700px;
+    margin-bottom: 80px;
+  }
+  .features {
+    width: 60vw;
+    height: 150px;
+  }
 }
