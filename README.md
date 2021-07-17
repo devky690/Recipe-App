@@ -51,4 +51,5 @@ Encrypt for session storage (jwt, cookies)
 Currently for security i only have route guards through the auth middleware.
 In the future i would love to include user permission roles like admin, chefs, etc.
 
-
+# Deployment
+https://recipe-for-all.herokuapp.com/
